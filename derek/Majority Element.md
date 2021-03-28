@@ -10,12 +10,12 @@ https://leetcode.com/problems/majority-element/
 ```javascript
 var majorityElement = function(nums) {
   // 해시 맵을 이용 할 수도 있지만 자바스크립트의 객체를 이용해서 동일한 속도가 나온다.
-  let mapObj = {}
+  let mapObj = {};
   for (let i=0 ; i < nums.length ; i++){
       if(!mapObj[nums[i]]){
-          mapObj[nums[i]] = 0
+          mapObj[nums[i]] = 0;
       }
-      mapObj[nums[i]] += 1
+      mapObj[nums[i]] += 1;
   }
     
   return Object.keys(mapObj).reduce((a, b) => mapObj[a] > mapObj[b] ? a : b);
