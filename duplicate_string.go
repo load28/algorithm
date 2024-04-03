@@ -6,9 +6,9 @@ import (
 )
 
 func main() {
-	str1 := "He11oWor1d"
-	str2 := "lloWorl"
-	index := 2
+	str1 := "Program29b8UYP"
+	str2 := "merS123"
+	index := 7
 
 	result := solution(str1, str2, index)
 
@@ -22,12 +22,13 @@ func solution(my_string string, overwrite_string string, s int) string {
 	str := strings.Split(my_string, "")
 
 	for index, char := range str {
-		if index < s {
+		
+		if index < s  || len(overwrite_string) + s <= index {
+			fmt.Println("1", char)
 			result += char
-		} else if index < len(overwrite_string) - 1 {
-			result += overwrite_string[index]
 		} else {
-			result += char
+			fmt.Println("2", string(overwrite_string[index - s]))
+			result += string(overwrite_string[index - s])
 		}
 	}
 
