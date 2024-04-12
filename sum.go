@@ -14,7 +14,7 @@ func getStrByIndex(str string, index int) string {
 		_, size := utf8.DecodeRuneInString(str[start:])
 		start += size
 		i++
-	}w
+	}
 	
 	r, _ := utf8.DecodeRuneInString(str[start:])
 	return runeToString(r)
