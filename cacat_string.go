@@ -1,11 +1,11 @@
-package main 
+package main
 
 import (
-	"fmt" 
 	"bufio"
+	"fmt"
 	"os"
 	"strings"
-) 
+)
 
 func main() {
 	var result, input string

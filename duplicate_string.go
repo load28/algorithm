@@ -22,12 +22,9 @@ func solution(my_string string, overwrite_string string, s int) string {
 	str := strings.Split(my_string, "")
 
 	for index, char := range str {
-		
 		if index < s  || len(overwrite_string) + s <= index {
-			fmt.Println("1", char)
 			result += char
 		} else {
-			fmt.Println("2", string(overwrite_string[index - s]))
 			result += string(overwrite_string[index - s])
 		}
 	}
