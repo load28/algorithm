@@ -19,8 +19,16 @@ func some(n int) int {
 
 	isEven := n%2 == 0
 	if isEven {
-		return n * some(n-2)
+		product := 1
+		for i := 1; i <= n; i += 2 {
+			product += i
+		}
+		return product
 	} else {
-		return n + some(n-2)
+		product := 2
+		for i := 1; i <= n; i += 2 {
+			product *= i
+		}
+		return product
 	}
 }

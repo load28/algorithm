@@ -9,8 +9,8 @@ func main() {
 
 func solution(my_string string, k int) string {
 	var result string
-	for i := 0; i < k; i ++ {
+	for i := 0; i < k; i++ {
 		result += my_string
 	}
-    return result
+	return result
 }
