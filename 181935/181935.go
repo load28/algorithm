@@ -1,34 +1,28 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
-	var result = solution(10)
+	result := solution(10)
 	fmt.Println(result)
 }
 
-// https://school.programmers.co.kr/learn/courses/30/lessons/181935
 func solution(n int) int {
-	return some(n)
+	if n%2 == 0 {
+		return calculateProduct(n)
+	} else {
+		return calculateSum(n)
+	}
 }
 
-func some(n int) int {
-	if n <= 1 {
-		return n
-	}
+func calculateProduct(n int) int {
+	product := n * (n + 1) * (2*n + 1) / 6
+	return product
+}
 
-	isEven := n%2 == 0
-	if isEven {
-		product := 1
-		for i := 1; i <= n; i += 2 {
-			product += i
-		}
-		return product
-	} else {
-		product := 2
-		for i := 1; i <= n; i += 2 {
-			product *= i
-		}
-		return product
-	}
+func calculateSum(n int) int {
+	sum := n * (n + 1) / 2
+	return sum
 }
