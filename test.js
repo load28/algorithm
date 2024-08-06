@@ -1,1 +1,1 @@
-const add = '+';
+const test2 = 'test'
