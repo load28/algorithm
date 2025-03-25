@@ -1,0 +1,52 @@
+#### 문제
+
+정수 배열 numbers가 주어집니다. numbers에서 서로 다른 인덱스에 있는 두 개의 수를 뽑아 더해서 만들 수 있는 모든 수를 배열에 오름차순으로 담아 return 하도록 solution 함수를 완성해주세요.
+
+#### 제약조건
+
+- numbers의 길이는 2 이상 100 이하입니다.
+- numbers의 모든 수는 0 이상 100 이하입니다.
+
+#### 입출력 예시
+
+| numbers       | result          |
+| ------------- | --------------- |
+| `[2,1,3,4,1]` | `[2,3,4,5,6,7]` |
+| `[5,0,2,7]`   | `[2,5,7,9,12]`  |
+
+#### 풀이 과정
+
+1. 배열의 길이가 100 이하이므로 알고리즘 복잡도는 O(n^2)을 사용해도 무방함
+2. 중복 for문을 이용해서 각 수를 더함
+3. 중복 제거를 함
+4. 오름차순으로 정렬함
+
+#### 정답
+
+- 해결방법은 중복된 for문을 순회함
+- for문은 두가지 방식으로 작성가능
+  - i의 뒤의 배열 값에 접근하는 방식
+  - i의 이전 배열에 접근하는 방식
+- 둘다 연산횟수는 동일하나 i의 이전 배열에 접근하는 방식은 j < i로 순회하기 때문에 캐시 적중률이 높음
+- 메모리 측면에서 i의 이전 배열에 접근하는 방식이 더 효율적임
+
+```javascript
+function solution(numbers) {
+  const answer = [];
+  for (let i = 0; i < numbers.length; i++) {
+    for (let j = 0; j < i; j++) {
+      answer.push(numbers[i] + numbers[j]);
+    }
+  }
+
+  return Array.from(new Set(answer)).sort((a, b) => a - b);
+}
+```
+
+```javascript
+for (let i = 0; i < numbers.length; i++) {
+  for (let j = i + 1; j < numbers.length; j++) {
+    answer.push(numbers[i] + numbers[j]);
+  }
+}
+```
