@@ -50,61 +50,34 @@ L: 왼쪽으로 한 칸 가기
 ```javascript
 function solution(dirs) {
   const currentPoint = [0, 0];
-  const edges = [];
+  const edges = new Set();
 
-  for (dir of dirs) {
-    switch (dir) {
-      case "U": {
-        if (5 < currentPoint[1] + 1) {
-          continue;
-        }
-        const centerPoint = [
-          currentPoint[0],
-          (currentPoint[1] + 1 + currentPoint[1]) / 2,
-        ];
-        edges.push(centerPoint.join(","));
-        currentPoint[1] += 1;
-        break;
-      }
-      case "D": {
-        if (currentPoint[1] - 1 < -5) {
-          continue;
-        }
-        const centerPoint = [
-          currentPoint[0],
-          (currentPoint[1] - 1 + currentPoint[1]) / 2,
-        ];
-        edges.push(centerPoint.join(","));
-        currentPoint[1] -= 1;
-        break;
-      }
-      case "L": {
-        if (currentPoint[0] - 1 < -5) {
-          continue;
-        }
-        const centerPoint = [
-          (currentPoint[0] - 1 + currentPoint[0]) / 2,
-          currentPoint[1],
-        ];
-        edges.push(centerPoint.join(","));
-        currentPoint[0] -= 1;
-        break;
-      }
-      case "R": {
-        if (5 < currentPoint[0] + 1) {
-          continue;
-        }
-        const centerPoint = [
-          (currentPoint[0] + 1 + currentPoint[0]) / 2,
-          currentPoint[1],
-        ];
-        edges.push(centerPoint.join(","));
-        currentPoint[0] += 1;
-        break;
-      }
+  const directions = {
+    U: [0, 1],
+    D: [0, -1],
+    L: [-1, 0],
+    R: [1, 0],
+  };
+
+  for (const dir of dirs) {
+    const [dx, dy] = directions[dir];
+    const nextX = currentPoint[0] + dx;
+    const nextY = currentPoint[1] + dy;
+
+    if (nextX < -5 || nextX > 5 || nextY < -5 || nextY > 5) {
+      continue;
     }
+
+    const path = `${currentPoint[0]},${currentPoint[1]},${nextX},${nextY}`;
+    const reversePath = `${nextX},${nextY},${currentPoint[0]},${currentPoint[1]}`;
+
+    edges.add(path);
+    edges.add(reversePath);
+
+    currentPoint[0] = nextX;
+    currentPoint[1] = nextY;
   }
 
-  return Array.from(new Set(edges)).length;
+  return edges.size / 2;
 }
 ```
